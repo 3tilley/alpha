@@ -5,7 +5,8 @@ function initialize() {
   var sherburn = new google.maps.LatLng(53.790397, -1.257058);
   var york = new google.maps.LatLng(53.928944, -1.114064);
   var durham = new google.maps.LatLng(54.763166, -1.578344);
-  var home = new google.maps.LatLng(51.487503,-0.012663);
+  var engage = new google.maps.LatLng(54.257491, -1.117175);
+  var home = new google.maps.LatLng(51.487503, -0.012663);
 
   var mapOptions = {
     zoom: 7,
@@ -18,6 +19,7 @@ function initialize() {
   var sherburnString = '<h1>Sherburn</h1><p>This is where I went to high school.';
   var yorkString = '<h1>York</h1><p><h2>York Sixth Form College</h2><p>I came here to do my A-Levels';
   var durhamString = '<h1>Durham University</h1><p><h2>Collingwood College</h2>I read mathematics here';
+  var engageString = '<h1>Rievaulx Abbey</h1>This is where I got engaged to the beautiful Katie Langridge.'
   var homeString = '<h1>Home</h1><p>I now live here.';
 
   var fairburnWindow = new google.maps.InfoWindow({
@@ -38,6 +40,10 @@ function initialize() {
 
   var durhamWindow = new google.maps.InfoWindow({
       content: durhamString
+  });
+
+  var engageWindow = new google.maps.InfoWindow({
+      content: engageString
   });
 
   var homeWindow = new google.maps.InfoWindow({
@@ -77,6 +83,12 @@ function initialize() {
       title: 'Durham'
   });
 
+  var engageMarker = new google.maps.Marker({
+      position: engage,
+      map: map,
+      title: 'Rievaulx Abbey'
+  });
+
   var homeMarker = new google.maps.Marker({
       position: home,
       map: map,
@@ -103,6 +115,10 @@ function initialize() {
       durhamWindow.open(map, durhamMarker);
   });
 
+  google.maps.event.addListener(engageMarker, 'mouseover', function () {
+      engageWindow.open(map, engageMarker);
+  });
+
   google.maps.event.addListener(homeMarker, 'mouseover', function () {
       homeWindow.open(map, homeMarker);
   });
@@ -125,6 +141,10 @@ function initialize() {
 
   google.maps.event.addListener(durhamMarker, 'mouseout', function () {
       durhamWindow.close();
+  });
+
+  google.maps.event.addListener(engageMarker, 'mouseout', function () {
+      engageWindow.close();
   });
 
   google.maps.event.addListener(homeMarker, 'mouseout', function () {
