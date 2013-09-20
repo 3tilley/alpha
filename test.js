@@ -530,6 +530,24 @@ function initialize() {
           google.maps.event.addListener(marker28, 'mouseout', function () {
               window28.close();
           });
+            
+          var latLng29 = new google.maps.LatLng(40.7142464, -73.9652885);
+          var string29 = '<h1>Isa</h1><p>"""Modern Primitive"". Menu changes every night."';
+          var window29 = new google.maps.InfoWindow({
+              content: string29
+          });
+          var marker29 = new google.maps.Marker({
+              position: latLng29,
+              map: map,
+              title: 'Isa',
+              icon: 'http://maps.google.com/mapfiles/ms/icons/pink-dot.png'
+          });
+          google.maps.event.addListener(marker29, 'mouseover', function () {
+              window29.open(map, marker29);
+          });
+          google.maps.event.addListener(marker29, 'mouseout', function () {
+              window29.close();
+          });
         
 }
 
