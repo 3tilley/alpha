@@ -101,7 +101,7 @@ type GeocodeResponse = FSharp.Data.JsonProvider<"""{
     }""">
 
 let latLng (address:string) =
-    let fetch = sprintf @"http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false" (address.Replace(" ","+") + ",NY")
+    let fetch = sprintf @"http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false" (address.Replace(" ","+") + "")
     use resp = System.Net.WebRequest.Create(fetch).GetResponse().GetResponseStream()
     System.Threading.Thread.Sleep(100)
     use reader = new System.IO.StreamReader(resp)
@@ -122,7 +122,7 @@ let projectPath = @"C:\Users\Maximus\Documents\GitHub\alpha\"
 
 let dodgyChar = char 65533
 
-let file = System.IO.File.OpenText(projectPath + "Things.csv").ReadToEnd().Trim().Replace(dodgyChar,' ').Replace("'","")
+let file = System.IO.File.OpenText(projectPath + "RyeThings.csv").ReadToEnd().Trim().Replace(dodgyChar,' ').Replace("'","")
 
 let itemsArray = file.Split([|'\n'|]) |> Array.map (fun i -> let arr = i.Trim().Split([|','|])
                                                              let cat = getCategory arr.[1] arr.[3]
@@ -138,8 +138,8 @@ let jsStart = "var map;
 function initialize() {
 
   var mapOptions = {
-    zoom: 13,
-    center: new google.maps.LatLng(40.722283, -73.98747),
+    zoom: 14,
+    center: new google.maps.LatLng(50.948018, 0.746291),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
